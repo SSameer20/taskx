@@ -3,7 +3,8 @@ const router = express.Router();
 const task = require('../controller/taskController')
 
 router.post('/create', task.createTask)
-router.get('/task/viewall', task.viewAllTask);
-router.get('/task/:user', task.userTask)
+router.get('/viewall', task.viewAllTask);
+router.get('/user', task.userTask)
+router.put('/update', task.taskUpdate)
 
 module.exports = router;

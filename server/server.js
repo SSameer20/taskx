@@ -10,6 +10,9 @@ require('dotenv').config();
 const taskRoutes = require("./routes/taskRoutes");
 const userRoutes = require("./routes/userRoutes");
 
+app.use("/api/task", taskRoutes);
+app.use("/api/user", userRoutes);
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
@@ -25,13 +28,14 @@ mongoose.connect(uri).then(() => {
   console.error('Error connecting to MongoDB:', error);
 });
 
+
+
 // Routes
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'templates', 'index.html'));
 })
 
-app.use("/api/task", taskRoutes);
-app.use("/api/user", userRoutes);
+
 
 // App 
 const PORT = process.env.PORT;

@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 
 const taskSchema = new mongoose.Schema({
-
-    title: {
+       title: {
         type: String,
         required: true
     },
@@ -24,21 +23,25 @@ const taskSchema = new mongoose.Schema({
     },
     dueDate: {
         type: Date,
-        default: () => new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+        default: () => new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (5.5 * 60 * 60 * 1000),
       },
     createdAt: {
         type: Date,
-        default: Date.now(),
+        default: () => new Date().getTime() + (5.5 * 60 * 60 * 1000),
     },
     updatedAt: {
         type: Date,
-        default: Date.now(),
+        default: () => new Date().getTime() + (5.5 * 60 * 60 * 1000),
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required : true
     }
 
+},
+{
+    timestamps: true
 });
 
 
